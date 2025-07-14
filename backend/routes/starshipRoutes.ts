@@ -1,6 +1,6 @@
 import { ServerRoute } from '@hapi/hapi'
 import { basicAuth } from '../middlewares/authMiddleware'
-import { getStarship, listStarships } from '../controllers/startshipController'
+import { getStarship, listStarships } from '../controllers/starshipController'
 
 const routes: ServerRoute[] = [
   {
