@@ -1,23 +1,23 @@
 import { ServerRoute } from '@hapi/hapi'
-import { getPerson, listPeople } from '../controllers/peopleController'
 import { basicAuth } from '../middlewares/authMiddleware'
+import { getStarship, listStarships } from '../controllers/startshipController'
 
 const routes: ServerRoute[] = [
   {
     method: 'GET',
-    path: '/api/people/{id}',
+    path: '/api/starship/{id}',
     options: {
       pre: [{ method: basicAuth }]
     },
-    handler: getPerson
+    handler: getStarship
   },
   {
     method: 'GET',
-    path: '/api/people',
+    path: '/api/starship',
     options: {
       pre: [{ method: basicAuth }]
     },
-    handler: listPeople
+    handler: listStarships
   }
 ]
 

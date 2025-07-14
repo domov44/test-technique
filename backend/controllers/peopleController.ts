@@ -23,7 +23,7 @@ export async function listPeople(request: Request, h: ResponseToolkit) {
     const data = await fetchPeopleList(page, limit, search)
 
     return h.response({
-      total: data.total,
+      total: data.total_records,
       results: data.results.map(p => ({
         id: p.uid,
         name: p.name

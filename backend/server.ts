@@ -1,5 +1,7 @@
 import Hapi from '@hapi/hapi'
 import peopleRoutes from './routes/peopleRoutes'
+import basicRoutes from './routes/basicRoutes'
+import starshipRoutes from './routes/starshipRoutes'
 
 export async function createServer(): Promise<Hapi.Server> {
   const server = Hapi.server({
@@ -10,6 +12,6 @@ export async function createServer(): Promise<Hapi.Server> {
     }
   })
 
-  server.route(peopleRoutes)
+  server.route([...basicRoutes, ...peopleRoutes, ...starshipRoutes])
   return server
 }
