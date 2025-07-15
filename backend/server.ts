@@ -6,6 +6,7 @@ import planetRoutes from './routes/planetRoutes'
 import filmRoutes from './routes/filmRoutes'
 import vehicleRoutes from './routes/vehicleRoutes'
 import speciesRoutes from './routes/speciesRoutes'
+import searchRoutes from './routes/searchRoutes'
 
 export async function createServer(): Promise<Hapi.Server> {
   const server = Hapi.server({
@@ -16,6 +17,6 @@ export async function createServer(): Promise<Hapi.Server> {
     }
   })
 
-  server.route([...basicRoutes, ...peopleRoutes, ...starshipRoutes, ...planetRoutes, ...filmRoutes, ...vehicleRoutes, ...speciesRoutes])
+  server.route([...basicRoutes, ...peopleRoutes, ...starshipRoutes, ...planetRoutes, ...filmRoutes, ...vehicleRoutes, ...speciesRoutes, ...searchRoutes])
   return server
 }

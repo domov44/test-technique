@@ -17,10 +17,10 @@ export async function listFilms(request: Request, h: ResponseToolkit) {
         const data = await fetchFilmsList()
 
         return h.response({
-            total: data.result.length,
-            results: data.result.map((f: any) => ({
+            total: data.total_records,
+            results: data.results.map(f => ({
                 id: f.uid,
-                title: f.properties.title
+                title: f.title
             }))
         }).code(200)
 

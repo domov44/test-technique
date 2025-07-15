@@ -12,5 +12,7 @@ export default function HelloPage() {
   if (isError) return <div>Erreur réseau</div>
   if (!data) return <div>Aucun résultat</div>
 
+  console.log(data.message)
+
   return <Hello message={data.message} />
 }
