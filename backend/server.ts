@@ -10,8 +10,8 @@ import searchRoutes from './routes/searchRoutes'
 
 export async function createServer(): Promise<Hapi.Server> {
   const server = Hapi.server({
-    port: 3001,
-    host: 'localhost',
+    port: process.env.PORT ? Number(process.env.PORT) : 3001,
+    host: '0.0.0.0',
     routes: {
       cors: { origin: ['*'] }
     }
