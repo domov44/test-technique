@@ -6,17 +6,17 @@ const vehicleRoutes: ServerRoute[] = [
   {
     method: 'GET',
     path: '/api/vehicles/{id}',
-    options: {
-      pre: [{ method: basicAuth }]
-    },
+    // options: {
+    //   pre: [{ method: basicAuth }]
+    // },
     handler: getVehicle
   },
   {
     method: 'GET',
     path: '/api/vehicles',
-    options: {
-      pre: [{ method: basicAuth }]
-    },
+    // options: {
+    //   pre: [{ method: basicAuth }]
+    // },
     handler: listVehicles
   }
 ]

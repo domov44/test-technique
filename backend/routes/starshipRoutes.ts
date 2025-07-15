@@ -6,17 +6,17 @@ const routes: ServerRoute[] = [
   {
     method: 'GET',
     path: '/api/starship/{id}',
-    options: {
-      pre: [{ method: basicAuth }]
-    },
+    // options: {
+    //   pre: [{ method: basicAuth }]
+    // },
     handler: getStarship
   },
   {
     method: 'GET',
     path: '/api/starship',
-    options: {
-      pre: [{ method: basicAuth }]
-    },
+    // options: {
+    //   pre: [{ method: basicAuth }]
+    // },
     handler: listStarships
   }
 ]

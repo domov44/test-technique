@@ -6,9 +6,9 @@ const routes: ServerRoute[] = [
   {
     method: 'GET',
     path: '/api/search',
-    options: {
-      pre: [{ method: basicAuth }]
-    },
+    // options: {
+    //   pre: [{ method: basicAuth }]
+    // },
     handler: globalSearch
   }
 ]

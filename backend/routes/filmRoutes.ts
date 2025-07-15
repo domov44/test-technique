@@ -6,17 +6,17 @@ const filmRoutes: ServerRoute[] = [
   {
     method: 'GET',
     path: '/api/films/{id}',
-    options: {
-      pre: [{ method: basicAuth }]
-    },
+    // options: {
+    //   pre: [{ method: basicAuth }]
+    // },
     handler: getFilm
   },
   {
     method: 'GET',
     path: '/api/films',
-    options: {
-      pre: [{ method: basicAuth }]
-    },
+    // options: {
+    //   pre: [{ method: basicAuth }]
+    // },
     handler: listFilms
   }
 ]
