@@ -1,5 +1,5 @@
 import { Request, ResponseToolkit } from '@hapi/hapi'
-import { fetchStarshipById, fetchStarshipsList } from '../services/swapiService'
+import { fetchStarshipById, fetchStarshipsList } from '../services/starshipService'
 import { formatStarship } from '../models/startshipModel'
 
 export async function getStarship(request: Request, h: ResponseToolkit) {

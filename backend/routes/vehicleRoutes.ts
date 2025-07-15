@@ -1,24 +1,24 @@
 import { ServerRoute } from '@hapi/hapi'
-import { getPeople, listPeople } from '../controllers/peopleController'
+import { getVehicle, listVehicles } from '../controllers/vehicleController'
 import { basicAuth } from '../middlewares/authMiddleware'
 
-const routes: ServerRoute[] = [
+const vehicleRoutes: ServerRoute[] = [
   {
     method: 'GET',
-    path: '/api/people/{id}',
+    path: '/api/vehicles/{id}',
     options: {
       pre: [{ method: basicAuth }]
     },
-    handler: getPeople
+    handler: getVehicle
   },
   {
     method: 'GET',
-    path: '/api/people',
+    path: '/api/vehicles',
     options: {
       pre: [{ method: basicAuth }]
     },
-    handler: listPeople
+    handler: listVehicles
   }
 ]
 
-export default routes
+export default vehicleRoutes

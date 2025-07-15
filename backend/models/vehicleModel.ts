@@ -1,6 +1,6 @@
-import { Starship } from "../interfaces/starship";
+import { Vehicle } from "../interfaces/vehicle";
 
-export function formatStarship(data: Starship) {
+export function formatVehicle(data: Vehicle) {
   return {
     name: data.name,
     model: data.model,
@@ -9,6 +9,6 @@ export function formatStarship(data: Starship) {
     length: data.length,
     crew: data.crew,
     passengers: data.passengers,
-    starship_class: data.starship_class
+    vehicle_class: data.vehicle_class
   }
 }

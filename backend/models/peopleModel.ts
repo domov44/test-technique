@@ -1,6 +1,6 @@
-import { SwapiPersonResult } from "../types/swapi";
+import { Person } from "../interfaces/person";
 
-export function formatPerson(data: SwapiPersonResult) {
+export function formatPeople(data: Person) {
   return {
     name: data.name,
     height: data.height,

@@ -1,24 +1,24 @@
 import { ServerRoute } from '@hapi/hapi'
-import { getPeople, listPeople } from '../controllers/peopleController'
+import { getFilm, listFilms } from '../controllers/filmController'
 import { basicAuth } from '../middlewares/authMiddleware'
 
-const routes: ServerRoute[] = [
+const filmRoutes: ServerRoute[] = [
   {
     method: 'GET',
-    path: '/api/people/{id}',
+    path: '/api/films/{id}',
     options: {
       pre: [{ method: basicAuth }]
     },
-    handler: getPeople
+    handler: getFilm
   },
   {
     method: 'GET',
-    path: '/api/people',
+    path: '/api/films',
     options: {
       pre: [{ method: basicAuth }]
     },
-    handler: listPeople
+    handler: listFilms
   }
 ]
 
-export default routes
+export default filmRoutes
