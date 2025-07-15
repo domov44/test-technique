@@ -6,17 +6,17 @@ const routes: ServerRoute[] = [
     {
         method: 'GET',
         path: '/api/planets/{id}',
-        // options: {
-        //     pre: [{ method: basicAuth }]
-        // },
+        options: {
+            pre: [{ method: basicAuth }]
+        },
         handler: getPlanet
     },
     {
         method: 'GET',
         path: '/api/planets',
-        // options: {
-        //     pre: [{ method: basicAuth }]
-        // },
+        options: {
+            pre: [{ method: basicAuth }]
+        },
         handler: listPlanets
     }
 ]

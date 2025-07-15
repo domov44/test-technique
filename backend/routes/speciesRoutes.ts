@@ -6,17 +6,17 @@ const speciesRoutes: ServerRoute[] = [
     {
         method: 'GET',
         path: '/api/species/{id}',
-        // options: {
-        //     pre: [{ method: basicAuth }]
-        // },
+        options: {
+            pre: [{ method: basicAuth }]
+        },
         handler: getSpecies
     },
     {
         method: 'GET',
         path: '/api/species',
-        // options: {
-        //     pre: [{ method: basicAuth }]
-        // },
+        options: {
+            pre: [{ method: basicAuth }]
+        },
         handler: listSpecies
     }
 ]

@@ -62,10 +62,13 @@ export default function SearchPage() {
       : 0;
 
   return (
-    <div style={{ maxWidth: 500, margin: "3rem auto" }}>
-      <form autoComplete="off">
-        <Input placeholder="Search someting about Star Wars..." {...register("search")} />
-      </form>
+    <div className="max-w-[900px] mx-auto my-12">
+      <div className="flex gap-4 flex-col">
+        <img className="rounded" src="yoda.avif"></img>
+        <form autoComplete="off" >
+          <Input placeholder="Search someting about Star Wars..." {...register("search")} />
+        </form>
+      </div>
 
       {debouncedValue && !isFetching && hasResults && (
         <Card style={{ marginTop: 10 }}>
@@ -73,7 +76,7 @@ export default function SearchPage() {
             <CardTitle>
               {totalResults === 0
                 ? "Nothing was found :("
-                : `Résult${totalResults > 1 ? "s" : ""} (${totalResults})`}
+                : `Result${totalResults > 1 ? "s" : ""} (${totalResults})`}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -122,7 +125,7 @@ export default function SearchPage() {
       {debouncedValue && isFetching && (
         <Card style={{ marginTop: 10 }}>
           <CardContent style={{ padding: "1em" }}>
-            Chargement…
+            Loading
           </CardContent>
         </Card>
       )}

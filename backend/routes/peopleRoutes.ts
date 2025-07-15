@@ -6,17 +6,17 @@ const routes: ServerRoute[] = [
   {
     method: 'GET',
     path: '/api/people/{id}',
-    // options: {
-    //   pre: [{ method: basicAuth }]
-    // },
+    options: {
+      pre: [{ method: basicAuth }]
+    },
     handler: getPeople
   },
   {
     method: 'GET',
     path: '/api/people',
-    // options: {
-    //   pre: [{ method: basicAuth }]
-    // },
+    options: {
+      pre: [{ method: basicAuth }]
+    },
     handler: listPeople
   }
 ]

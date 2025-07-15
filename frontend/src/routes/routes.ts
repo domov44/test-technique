@@ -1,4 +1,7 @@
 export const ROUTES = {
+  // Public routes
+  LOGIN: '/login',
+
   // Private routes
   HOME: '/',
   PERSON_DETAIL: (id:string) => `/people/${id}`,
@@ -6,6 +9,7 @@ export const ROUTES = {
   SPECIES_DETAIL: (id:string) => `/species/${id}`,
   STARSHIP_DETAIL: (id:string) => `/starships/${id}`,
   VEHICLE_DETAIL: (id:string) => `/vehicles/${id}`,
+  
 
   // Error routes 
   NOT_FOUND: '*',
