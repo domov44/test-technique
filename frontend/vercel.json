@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://test-technique-n5c7.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
