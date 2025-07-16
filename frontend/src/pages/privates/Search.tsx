@@ -69,7 +69,7 @@ export default function SearchPage() {
       : 0;
 
   return (
-    <div className="max-w-[900px] mx-auto my-12">
+    <div className="my-12 w-full">
       <div className="flex gap-4 flex-col">
         <img className="rounded" src="yoda.avif" />
         <form autoComplete="off">
