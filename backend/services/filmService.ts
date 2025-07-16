@@ -3,13 +3,13 @@ import { SwapiPaginatedResponse } from '../types/swapi'
 import { Film, FilmSummary } from '../interfaces/film'
 
 export async function fetchFilmById(id: string): Promise<Film> {
-  const url = `https://swapi.tech/api/films/${id}`
+  const url = `https://swapi.info/api/films/${id}`
   const response = await get(url)
   return response.result.properties
 }
 
 export async function fetchFilmsList(): Promise<SwapiPaginatedResponse<FilmSummary>> {
-  const url = new URL('https://swapi.tech/api/films')
+  const url = new URL('https://swapi.info/api/films')
   const response = await get<{ message: string; result: FilmSummary[] }>(url.toString())
 
   return {

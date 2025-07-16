@@ -1,7 +1,9 @@
-import { Species } from "../interfaces/species";
+import { Species, SpeciesSummary } from "../interfaces/species";
+import { extractIdFromUrl } from "../utils/urlHelpers";
 
 export function formatSpecies(data: Species) {
     return {
+        id: extractIdFromUrl(data.url) || '',
         name: data.name,
         classification: data.classification,
         designation: data.designation,
@@ -13,4 +15,12 @@ export function formatSpecies(data: Species) {
         language: data.language,
         homeworld: data.homeworld
     }
+}
+
+export function formatSpeciesSummary(data: any): SpeciesSummary {
+  return {
+    id: extractIdFromUrl(data.url) || '',
+    name: data.name,
+    url: data.url
+  }
 }

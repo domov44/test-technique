@@ -1,4 +1,5 @@
-import { Vehicle } from "../interfaces/vehicle";
+import { Vehicle, VehicleSummary } from "../interfaces/vehicle";
+import { extractIdFromUrl } from "../utils/urlHelpers";
 
 export function formatVehicle(data: Vehicle) {
   return {
@@ -10,5 +11,13 @@ export function formatVehicle(data: Vehicle) {
     crew: data.crew,
     passengers: data.passengers,
     vehicle_class: data.vehicle_class
+  }
+}
+
+export function formatVehicleSummary(data: any): VehicleSummary {
+  return {
+    id: extractIdFromUrl(data.url) || '',
+    name: data.name,
+    url: data.url
   }
 }

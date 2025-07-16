@@ -1,4 +1,5 @@
 export interface Starship {
+  id: string
   name: string
   model: string
   manufacturer: string
@@ -11,7 +12,7 @@ export interface Starship {
 }
 
 export interface StarshipSummary {
-  uid: string
+  id: string
   name: string
   url: string
 }

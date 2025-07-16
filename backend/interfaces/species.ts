@@ -1,4 +1,5 @@
 export interface Species {
+  id: string
   name: string
   classification: string
   designation: string
@@ -12,7 +13,7 @@ export interface Species {
 }
 
 export interface SpeciesSummary {
-  uid: string
+  id: string
   name: string
   url: string
 }

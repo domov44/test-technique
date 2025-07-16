@@ -1,6 +1,7 @@
 import { Request, ResponseToolkit } from '@hapi/hapi'
-import { formatVehicle } from '../models/vehicleModel'
 import { fetchVehicleById, fetchVehiclesList } from '../services/vehicleService'
+import { formatVehicle, formatVehicleSummary } from '../models/vehicleModel'
+import { VehicleSummary } from '../interfaces/vehicle'
 
 export async function getVehicle(request: Request, h: ResponseToolkit) {
   const id = request.params.id
@@ -15,21 +16,15 @@ export async function getVehicle(request: Request, h: ResponseToolkit) {
 }
 
 export async function listVehicles(request: Request, h: ResponseToolkit) {
-  const page = parseInt(request.query.page) || 1
-  const limit = parseInt(request.query.limit) || 10
-  const search = request.query.name?.toString()
-
   try {
-    const data = await fetchVehiclesList(page, limit, search)
+    const dataRaw = await fetchVehiclesList()
+
+    const results: VehicleSummary[] = dataRaw.map(formatVehicleSummary)
 
     return h.response({
-      total: data.total_records,
-      results: data.results.map(v => ({
-        id: v.uid,
-        name: v.name
-      }))
+      total: results.length,
+      results,
     }).code(200)
-
   } catch (err: any) {
     return h.response({ error: err.message }).code(500)
   }

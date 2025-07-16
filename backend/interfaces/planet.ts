@@ -1,4 +1,5 @@
 export interface Planet {
+  id: string
   name: string
   climate: string
   diameter: string
@@ -9,7 +10,7 @@ export interface Planet {
 }
 
 export interface PlanetSummary {
-  uid: string
+  id: string
   name: string
   url: string
 }

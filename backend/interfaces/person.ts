@@ -1,4 +1,5 @@
 export interface Person {
+  id: string
   name: string
   height: string
   mass: string
@@ -8,7 +9,7 @@ export interface Person {
 }
 
 export interface PersonSummary {
-  uid: string
+  id: string
   name: string
   url: string
 }

@@ -1,11 +1,14 @@
 import { Request, ResponseToolkit } from '@hapi/hapi'
 import { fetchPlanetById, fetchPlanetsList } from '../services/planetService'
+import { formatPlanet, formatPlanetSummary } from '../models/planetModel'
+import { PlanetSummary } from '../interfaces/planet'
 
 export async function getPlanet(request: Request, h: ResponseToolkit) {
   const id = request.params.id
 
   try {
-    const planet = await fetchPlanetById(id)
+    const rawData = await fetchPlanetById(id)
+    const planet = formatPlanet(rawData)
     return h.response(planet).code(200)
   } catch (err: any) {
     return h.response({ error: err.message }).code(500)
@@ -13,21 +16,15 @@ export async function getPlanet(request: Request, h: ResponseToolkit) {
 }
 
 export async function listPlanets(request: Request, h: ResponseToolkit) {
-  const page = parseInt(request.query.page) || 1
-  const limit = parseInt(request.query.limit) || 10
-  const search = request.query.name?.toString()
-
   try {
-    const data = await fetchPlanetsList(page, limit, search)
+    const dataRaw = await fetchPlanetsList()
+
+    const results: PlanetSummary[] = dataRaw.map(formatPlanetSummary)
 
     return h.response({
-      total: data.total_records,
-      results: data.results.map(p => ({
-        id: p.uid,
-        name: p.name
-      }))
+      total: results.length,
+      results,
     }).code(200)
-
   } catch (err: any) {
     return h.response({ error: err.message }).code(500)
   }
