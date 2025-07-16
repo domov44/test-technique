@@ -43,7 +43,7 @@ export default function EntityPage() {
     return (
         <EntityLayout isLoading={isLoading} error={error} data={data}>
             {data && (
-                <EntityCard title={data.name} fields={fields ?? []} />
+                <EntityCard title={data.name} fields={fields ?? []} category={category} />
             )}
         </EntityLayout>
     );
