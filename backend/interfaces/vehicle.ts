@@ -1,4 +1,5 @@
 export interface Vehicle {
+  id: string
   name: string
   model: string
   manufacturer: string
@@ -11,7 +12,7 @@ export interface Vehicle {
 }
 
 export interface VehicleSummary {
-  uid: string
+  id: string
   name: string
   url: string
 }

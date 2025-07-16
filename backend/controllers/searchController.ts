@@ -5,26 +5,36 @@ import { fetchSpeciesList } from '../services/speciesService'
 import { fetchStarshipsList } from '../services/starshipService'
 import { fetchVehiclesList } from '../services/vehicleService'
 
+import { formatPersonSummary } from '../models/peopleModel'
+import { formatPlanetSummary } from '../models/planetModel'
+import { formatSpeciesSummary } from '../models/speciesModel'
+import { formatStarshipSummary } from '../models/starshipModel'
+import { formatVehicleSummary } from '../models/vehicleModel'
+
 export async function globalSearch(request: Request, h: ResponseToolkit) {
     const query = request.query.q?.toString()
     if (!query) return h.response({ error: 'Missing search query' }).code(400)
 
     const [peopleData, planetsData, speciesData, starshipsData, vehiclesData] = await Promise.all([
-        fetchPeopleList(1, 100),
-        fetchPlanetsList(1, 100),
-        fetchSpeciesList(1, 100),
-        fetchStarshipsList(1, 100),
-        fetchVehiclesList(1, 100)
+        fetchPeopleList(),
+        fetchPlanetsList(),
+        fetchSpeciesList(),
+        fetchStarshipsList(),
+        fetchVehiclesList()
     ])
 
-    const filterByName = (items: any[], key: string = 'name') =>
-        items.filter(item => item[key]?.toLowerCase().includes(query.toLowerCase()))
+    const filterByName = (items: any[], formatter: (item: any) => any, key: string = 'name') =>
+        items
+            .filter(item => item[key]?.toLowerCase().includes(query.toLowerCase()))
+            .map(formatter)
 
-    return h.response({
-        people: filterByName(peopleData.results || peopleData.results, 'name'),
-        planets: filterByName(planetsData.results || planetsData.results, 'name'),
-        species: filterByName(speciesData.results || speciesData.results, 'name'),
-        starships: filterByName(starshipsData.results || starshipsData.results, 'name'),
-        vehicles: filterByName(vehiclesData.results || vehiclesData.results, 'name')
-    }).code(200)
+    const responsePayload = {
+        people: filterByName(peopleData, formatPersonSummary),
+        planets: filterByName(planetsData, formatPlanetSummary),
+        species: filterByName(speciesData, formatSpeciesSummary),
+        starships: filterByName(starshipsData, formatStarshipSummary),
+        vehicles: filterByName(vehiclesData, formatVehicleSummary)
+    }
+
+    return h.response(responsePayload).code(200)
 }

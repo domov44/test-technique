@@ -1,6 +1,7 @@
 import { Request, ResponseToolkit } from '@hapi/hapi'
 import { fetchPeopleById, fetchPeopleList } from '../services/peopleService'
-import { formatPeople } from '../models/peopleModel'
+import { formatPeople, formatPersonSummary } from '../models/peopleModel'
+import { PersonSummary } from '../interfaces/person'
 
 export async function getPeople(request: Request, h: ResponseToolkit) {
   const id = request.params.id
@@ -15,19 +16,14 @@ export async function getPeople(request: Request, h: ResponseToolkit) {
 }
 
 export async function listPeople(request: Request, h: ResponseToolkit) {
-  const page = parseInt(request.query.page) || 1
-  const limit = parseInt(request.query.limit) || 10
-  const search = request.query.name?.toString()
-
   try {
-    const data = await fetchPeopleList(page, limit, search)
+    const dataRaw = await fetchPeopleList()
+
+    const results: PersonSummary[] = dataRaw.map(formatPersonSummary)
 
     return h.response({
-      total: data.total_records,
-      results: data.results.map(p => ({
-        id: p.uid,
-        name: p.name
-      }))
+      total: results.length,
+      results,
     }).code(200)
 
   } catch (err: any) {
